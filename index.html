@@ -88,7 +88,7 @@ a:hover{color:#245640}
 <header style="position:fixed; top:0; left:0; right:0; z-index:50; background:{{ headerBg }}; backdrop-filter:{{ headerBlur }}; -webkit-backdrop-filter:{{ headerBlur }}; border-bottom:1px solid {{ headerBorder }}; transition:background .6s cubic-bezier(.22,1,.36,1), border-color .6s cubic-bezier(.22,1,.36,1);">
   <div style="max-width:1360px; margin:0 auto; padding:0 clamp(20px,5vw,64px); height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
     <a href="#inicio" aria-label="Renovatio, voltar ao início" style="display:flex; align-items:center; gap:12px; color:#4B5A7D; text-decoration:none;">
-      <span style="display:block; width:52px; height:33px; overflow:hidden; flex:none;"><img src="assets/logo-renovatio-264.webp" alt="" width="52" height="55" style="width:52px; height:auto;"></span>
+      <span style="display:block; width:52px; height:33px; overflow:hidden; flex:none;"><img src="assets/logo-renovatio-104.webp" alt="" width="52" height="55" style="width:52px; height:auto;"></span>
       <span style="font-family:Outfit, sans-serif; font-weight:300; font-size:21px; letter-spacing:.16em; color:#4B5A7D; line-height:1;">RENOVATIO</span>
     </a>
     <sc-if value="{{ navFull }}" hint-placeholder-val="{{ true }}">
@@ -495,21 +495,21 @@ a:hover{color:#245640}
 
     <div data-t-track="1" class="t-track" role="region" aria-roledescription="carrossel" aria-label="Depoimentos de pacientes" tabindex="0" style="display:flex; align-items:flex-start; gap:{{ tGap }}; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; overscroll-behavior-x:contain; padding:4px {{ tBleed }} 8px; margin:-4px calc(-1 * {{ tBleed }}) 0; scroll-padding-inline:{{ tBleed }};">
       <sc-for list="{{ testimonials }}" as="item" hint-placeholder-count="8">
-        <figure role="group" aria-roledescription="depoimento" aria-label="{{ item.pos }}" style="flex:0 0 {{ tCardW }}; scroll-snap-align:start; display:flex; flex-direction:column; padding:{{ tCardPad }}; background:#F7F6F2; border:1px solid rgba(27,34,50,.10); border-radius:22px; transition:border-color .7s cubic-bezier(.22,1,.36,1), box-shadow .7s cubic-bezier(.22,1,.36,1);" style-hover="border-color:rgba(214,138,30,.45); box-shadow:0 0 0 4px rgba(214,138,30,.07), 0 24px 60px -34px rgba(27,34,50,.35);">
+        <div role="group" aria-roledescription="depoimento" aria-label="{{ item.pos }}" style="flex:0 0 {{ tCardW }}; scroll-snap-align:start; display:flex; flex-direction:column; padding:{{ tCardPad }}; background:#F7F6F2; border:1px solid rgba(27,34,50,.10); border-radius:22px; transition:border-color .7s cubic-bezier(.22,1,.36,1), box-shadow .7s cubic-bezier(.22,1,.36,1);" style-hover="border-color:rgba(214,138,30,.45); box-shadow:0 0 0 4px rgba(214,138,30,.07), 0 24px 60px -34px rgba(27,34,50,.35);">
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <span aria-hidden="true" style="font-family:Outfit, sans-serif; font-weight:200; font-size:80px; line-height:.6; height:30px; color:#D68A1E;">“</span>
             <span aria-hidden="true" style="display:flex; margin-top:4px; gap:3px; color:#D68A1E;"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"></path></svg></span>
           </div>
           <blockquote style="margin-top:16px; font-family:Outfit, sans-serif; font-weight:300; font-size:{{ tFont }}; line-height:1.45; letter-spacing:-.01em; color:#1B2232; text-wrap:pretty;">{{ item.text }}</blockquote>
-          <figcaption style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(27,34,50,.10); display:flex; align-items:center; gap:14px;">
+          <div style="margin-top:24px; padding-top:20px; border-top:1px solid rgba(27,34,50,.10); display:flex; align-items:center; gap:14px;">
             <span aria-hidden="true" style="flex:none; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:{{ item.bg }}; color:#F7F6F2; font-family:Outfit, sans-serif; font-weight:500; font-size:16px; letter-spacing:.02em;">{{ item.initials }}</span>
             <span style="display:flex; flex-direction:column; line-height:1.3;">
               <span style="font-weight:600; font-size:16px; color:#1B2232;">{{ item.name }}</span>
               <span style="font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:.14em; color:#5E6A85;">VIA GOOGLE</span>
             </span>
             <span style="margin-left:auto; display:flex;"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true" style="flex:none;"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"></path><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"></path><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"></path><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"></path></svg></span>
-          </figcaption>
-        </figure>
+          </div>
+        </div>
       </sc-for>
     </div>
 
@@ -634,7 +634,7 @@ a:hover{color:#245640}
 <section aria-labelledby="cta-titulo" style="background:#DCE8DF; padding:clamp(48px,6vw,80px) 0;">
   <div style="max-width:1360px; margin:0 auto; padding:0 clamp(20px,5vw,64px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(40px,6vw,96px);">
     <div data-reveal="left" class="media" style="flex:1 1 360px; position:relative; aspect-ratio:16/10; border-radius:24px 160px 24px 24px; overflow:hidden; background:linear-gradient(150deg,#E8ECEF 0%,#CFDFD4 60%,#E9E1D2 100%);">
-      <img data-media="1" data-parallax=".04" src="assets/fechamento-900.webp" srcset="assets/fechamento-900.webp 900w, assets/fechamento.webp 1600w" sizes="100vw" alt="Dr. Phelype Maia sorrindo em seu consultório na Renovatio, em Fortaleza" width="1600" height="1067" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; transform:scale(1.12);">
+      <img data-media="1" data-parallax=".04" src="assets/fechamento-900.webp" srcset="assets/fechamento-700.webp 700w, assets/fechamento-900.webp 900w, assets/fechamento.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Dr. Phelype Maia sorrindo em seu consultório na Renovatio, em Fortaleza" width="1600" height="1067" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; transform:scale(1.12);">
     </div>
     <div style="flex:1 1 380px; min-width:0;">
       <svg data-reveal="up" width="44" height="23" viewBox="0 0 34 18" fill="none" aria-hidden="true"><path d="M1 17A16 16 0 0 1 5.7 5.7" stroke="#7FA88C" stroke-width="1.6"></path><path d="M5.7 5.7A16 16 0 0 1 17 1" stroke="#1A8CBF" stroke-width="1.6"></path><path d="M17 1A16 16 0 0 1 28.3 5.7" stroke="#D68A1E" stroke-width="1.6"></path><path d="M28.3 5.7A16 16 0 0 1 33 17" stroke="#4B5A7D" stroke-width="1.6"></path></svg>
@@ -651,7 +651,7 @@ a:hover{color:#245640}
 <footer style="background:#1B2232; color:#F7F6F2;">
   <div class="ft-grid" style="max-width:1360px; margin:0 auto; padding:clamp(72px,8vw,112px) clamp(20px,5vw,64px) clamp(48px,6vw,72px); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,220px), 1fr)); gap:48px 40px;">
     <div>
-      <img src="assets/logo-renovatio-264.webp" alt="Renovatio Centro de Excelência Odontológica" width="140" height="147" loading="lazy" style="width:128px; height:auto; filter:brightness(0) invert(1); opacity:.92;">
+      <img src="assets/logo-renovatio-128.webp" srcset="assets/logo-renovatio-128.webp 1x, assets/logo-renovatio-264.webp 2x" alt="Renovatio Centro de Excelência Odontológica" width="140" height="147" loading="lazy" style="width:128px; height:auto; filter:brightness(0) invert(1); opacity:.92;">
       <p style="margin-top:24px; max-width:18em; font-family:Outfit, sans-serif; font-weight:300; font-size:20px; line-height:1.35; color:#F7F6F2;">Cirurgia, implantes e face, com método e base científica.</p>
     </div>
     <nav aria-label="Rodapé">
@@ -1027,7 +1027,7 @@ class Component extends DCLogic {
       toggleMute: () => this.toggleMute(),
       trajCols: wide ? 'minmax(0,5fr) minmax(0,6fr)' : 'minmax(0,1fr)',
       trajAspect: wide ? '6 / 7' : '4 / 3',
-      marcos: MARCOS.map((x, i) => ({ ...x, num: pad(i), op: !wide || s.marco === i ? 1 : 0.32 })),
+      marcos: MARCOS.map((x, i) => ({ ...x, num: pad(i), op: !wide || s.marco === i ? 1 : 0.88 })),
       faq: FAQ.map((x, i) => ({ ...x, bid: 'faq-q-' + i, pid: 'faq-a-' + i, open: s.faq === i, rows: s.faq === i ? '1fr' : '0fr', iconTf: s.faq === i ? 'rotate(45deg)' : 'none', onToggle: () => this.setState({ faq: s.faq === i ? -1 : i }) })),
       hideImg: e => { e.currentTarget.style.display = 'none'; },
       waTipOp: s.waHover && wide ? 1 : 0, waTipTf: s.waHover && wide ? 'translateX(0)' : 'translateX(8px)',
