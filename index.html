@@ -515,7 +515,7 @@ a:hover{color:#245640}
 
     <div style="margin-top:clamp(28px,3.5vw,44px); display:flex; align-items:center; gap:clamp(20px,3vw,40px);">
       <div aria-hidden="true" style="position:relative; flex:1; height:2px; background:rgba(27,34,50,.10); overflow:hidden; border-radius:2px;">
-        <div style="position:absolute; top:0; bottom:0; left:{{ tBarLeft }}; width:{{ tBarW }}; background:#1B2232; border-radius:2px; transition:left .25s linear, width .25s linear;"></div>
+        <div style="position:absolute; top:0; bottom:0; left:0; width:{{ tBarW }}; transform:translateX({{ tBarX }}); background:#1B2232; border-radius:2px; transition:transform .25s linear; will-change:transform;"></div>
       </div>
       <div style="display:flex; gap:10px;">
         <button type="button" onClick="{{ tToggle }}" aria-label="{{ tPlayLabel }}" style="width:{{ tBtn }}; height:{{ tBtn }}; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid transparent; color:#1B2232; background:transparent; transition:background .5s cubic-bezier(.22,1,.36,1), border-color .5s cubic-bezier(.22,1,.36,1);" style-hover="border-color:rgba(27,34,50,.18);">
@@ -634,7 +634,7 @@ a:hover{color:#245640}
 <section aria-labelledby="cta-titulo" style="background:#DCE8DF; padding:clamp(48px,6vw,80px) 0;">
   <div style="max-width:1360px; margin:0 auto; padding:0 clamp(20px,5vw,64px); display:flex; flex-wrap:wrap; align-items:center; gap:clamp(40px,6vw,96px);">
     <div data-reveal="left" class="media" style="flex:1 1 360px; position:relative; aspect-ratio:16/10; border-radius:24px 160px 24px 24px; overflow:hidden; background:linear-gradient(150deg,#E8ECEF 0%,#CFDFD4 60%,#E9E1D2 100%);">
-      <img data-media="1" data-parallax=".04" src="assets/fechamento-900.webp" srcset="assets/fechamento-700.webp 700w, assets/fechamento-900.webp 900w, assets/fechamento.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Dr. Phelype Maia sorrindo em seu consultório na Renovatio, em Fortaleza" width="1600" height="1067" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; transform:scale(1.12);">
+      <img data-media="1" data-parallax=".04" src="assets/fechamento-900.webp" srcset="assets/fechamento-700.webp 700w, assets/fechamento-900.webp 900w, assets/fechamento.webp 1600w" sizes="(max-width: 900px) calc(100vw - 40px), 50vw" alt="Dr. Phelype Maia sorrindo em seu consultório na Renovatio, em Fortaleza" width="1600" height="1067" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; transform:scale(1.12);">
     </div>
     <div style="flex:1 1 380px; min-width:0;">
       <svg data-reveal="up" width="44" height="23" viewBox="0 0 34 18" fill="none" aria-hidden="true"><path d="M1 17A16 16 0 0 1 5.7 5.7" stroke="#7FA88C" stroke-width="1.6"></path><path d="M5.7 5.7A16 16 0 0 1 17 1" stroke="#1A8CBF" stroke-width="1.6"></path><path d="M17 1A16 16 0 0 1 28.3 5.7" stroke="#D68A1E" stroke-width="1.6"></path><path d="M28.3 5.7A16 16 0 0 1 33 17" stroke="#4B5A7D" stroke-width="1.6"></path></svg>
@@ -827,7 +827,7 @@ class Component extends DCLogic {
         this.videoIO.observe(v);
       } else start();
     }
-    setTimeout(() => { this.hideBroken(); this.heroIn(); this.setupReveals(); this.frame(); }, 120);
+    setTimeout(() => { this.hideBroken(); this.setupReveals(); this.heroIn(); requestAnimationFrame(() => this.frame()); }, 120);
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize);
@@ -852,15 +852,16 @@ class Component extends DCLogic {
     };
     document.querySelectorAll('[data-hero]').forEach(el => { const photo = el.dataset.hero === 'photo'; prep(el, +el.dataset.delay || 0, 900, photo ? 'scale(.97)' : 'translateY(14px)', !photo); });
     document.querySelectorAll('[data-line]').forEach((el, i) => prep(el, 260 + i * 65, 1000, 'translateY(110%)', false));
-    void document.body.offsetWidth;
-    items.forEach(([el, delay, dur]) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => items.forEach(([el, delay, dur]) => {
       el.style.transition = `opacity ${dur}ms ${E} ${delay}ms, transform ${dur + 100}ms ${E} ${delay}ms`;
       el.style.opacity = '1'; el.style.transform = 'none';
-    });
+    })));
     document.querySelectorAll('[data-arc]').forEach((el, i) => {
-      el.style.transition = 'none'; el.style.strokeDashoffset = '1'; void el.getBoundingClientRect();
-      el.style.transition = `stroke-dashoffset ${i === 3 ? 900 : 700}ms ${E} ${600 + i * 520}ms`;
-      el.style.strokeDashoffset = '0';
+      el.style.transition = 'none'; el.style.strokeDashoffset = '1';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        el.style.transition = `stroke-dashoffset ${i === 3 ? 900 : 700}ms ${E} ${600 + i * 520}ms`;
+        el.style.strokeDashoffset = '0';
+      }));
     });
   }
   setupReveals() {
@@ -877,7 +878,6 @@ class Component extends DCLogic {
       if (t === 'mask') el.style.clipPath = 'inset(0 0 100% 0)';
       this.pendingReveals.push(el);
     });
-    void document.body.offsetWidth;
   }
   frame() {
     const vh = window.innerHeight;
@@ -1014,7 +1014,7 @@ class Component extends DCLogic {
         initials: x.name.split(' ').filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase(),
         bg: ['#1B2232', '#2E6B52', '#4B5A7D', '#B5701A'][i % 4] })),
       tBarW: `${(s.tFrac * 100).toFixed(2)}%`,
-      tBarLeft: `${(s.tPos * (1 - s.tFrac) * 100).toFixed(2)}%`,
+      tBarX: `${(s.tFrac > 0 ? s.tPos * (1 - s.tFrac) / s.tFrac * 100 : 0).toFixed(2)}%`,
       tAtStart: s.tPos <= .01, tAtEnd: s.tPos >= .99 || s.tFrac >= 1,
       tPrevOp: s.tPos <= .01 ? .35 : 1, tNextOp: s.tPos >= .99 || s.tFrac >= 1 ? .35 : 1,
       tPrev: () => { this.tHold = Date.now() + 8000; this.slideT(-1); },
