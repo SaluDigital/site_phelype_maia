@@ -6,6 +6,9 @@
   // Cole aqui a URL do Web App publicado no Apps Script (termina em /exec).
   var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyKIupTAUKuQlX_MD8jR1jnh8yflRrHQGrVy4JraN12Mqf2-gRswiDXGfW4Q3DedGWK/exec';
 
+  // Nome da página gravado na coluna "Origem" (definido em data-origem na tag do script).
+  var ORIGEM = (document.currentScript && document.currentScript.getAttribute('data-origem')) || 'Site';
+
   var overlay, form, nameInput, phoneInput, nameErr, phoneErr, submitBtn, lastFocus, targetHref;
 
   function css() {
@@ -146,7 +149,8 @@
       nome: nameInput.value.trim().replace(/\s+/g, ' '),
       whatsapp: phoneInput.value,
       pagina: location.href,
-      origem: document.referrer || 'direto'
+      origem: ORIGEM,
+      referencia: document.referrer || 'direto'
     };
     sendToSheet(data);
     if (typeof gtag === 'function') { try { gtag('event', 'generate_lead', { method: 'whatsapp_popup' }); } catch (_) {} }
